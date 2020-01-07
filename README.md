@@ -14,14 +14,14 @@ npm install validera
 const validera = require('validera')
 ```
 
-```
+```javascript
 const value = new validera("validera")
         .type("string")
         .nullOrEmpty()
         .valueOrThrow()
 ```
 
-```                    
+```javascript                    
 const isValid = new validera(50)
         .type("number")
         .positive()
@@ -30,7 +30,7 @@ const isValid = new validera(50)
         .check()   
 ```            
 
-```
+```javascript
 validera.isTypeEqual("validera", "string") //true
 validera.isEqualAny(1, [2,3,4])            //false
 validera.isNotEqualAny(1, [2,3,4])         //true
