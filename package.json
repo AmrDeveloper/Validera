@@ -1,0 +1,22 @@
+{
+  "name": "validera",
+  "version": "1.0.0",
+  "description": "NodeJS object validation to check type and value with multi conditions",
+  "main": "validera.js",
+  "keywords": [
+    "validera",
+    "validate",
+    "validation",
+    "object",
+    "nodejs"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/amrdeveloper/validera.git"
+  },
+  "bugs": {
+    "url": "https://github.com/amrdeveloper/validera/issues"
+  },
+  "author": "Amr Hesham",
+  "license": "MIT"
+}
