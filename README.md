@@ -10,7 +10,7 @@ npm install validera
 
 ## Usage
 
-```
+```javascript
 const validera = require('validera')
 ```
 
