@@ -87,6 +87,13 @@ class Validera {
         return this;
     }
 
+    notEqualOneOf(...values) {
+        if(this.isValid) {
+            this.isValid = Validera.notEqualOneOf(this.value, values);
+        }
+        return this;
+    }
+
     notEqualAllof(...values) {
         if (this.isValid) {
             this.isValid = Validera.isNotEqualAllof(this.value, values);
@@ -131,11 +138,7 @@ class Validera {
 
     nullOrZero() {
         if (this.isValid) {
-            if (this.value == null) {
-                this.isValid = true;
-            } else {
-                this.isValid = this.value == 0;
-            }
+            this.value = Validera.isNullOrZero(this.value);
         }
         return this;
     }
