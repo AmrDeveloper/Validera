@@ -10,11 +10,18 @@ class Validera {
         return typeof value == type;
     }
 
-    static isEqualAny(value, ...values) {
+    static isEqualOneof(value, ...values) {
         return values.includes(value)
     }
 
-    static isNotEqualAny(value, ...values) {
+    static isNotEqualOneof(value, ...values) {
+        for(let v of values) {
+            if(value != v) return true;
+        }
+        return false;
+    }
+
+    static isNotEqualAllof(value, ...values) {
         return !values.includes(value)
     }
 
@@ -73,16 +80,16 @@ class Validera {
         return this;
     }
 
-    equalAny(...values) {
+    equalOneof(...values) {
         if (this.isValid) {
-            this.isValid = Validera.isEqualAny(this.value, values);
+            this.isValid = Validera.isEqualOneof(this.value, values);
         }
         return this;
     }
 
-    notEqualAny(...values) {
+    notEqualAllof(...values) {
         if (this.isValid) {
-            this.isValid = Validera.isNotEqualAny(this.value, values);
+            this.isValid = Validera.isNotEqualAllof(this.value, values);
         }
         return this;
     }
@@ -95,7 +102,7 @@ class Validera {
     }
 
     negative() {
-        if (this.isValid) { 
+        if (this.isValid) {
             this.isValid = Validera.isNegative(this.value);
         }
         return this;
@@ -144,8 +151,8 @@ class Validera {
         return this.isValid;
     }
 
-    valueOrThrow(){
-        if(this.isValid){
+    valueOrThrow() {
+        if (this.isValid) {
             return this.value;
         }
         throw Error("Value is not valid")
