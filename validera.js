@@ -181,6 +181,10 @@ class Validera {
         return value;
     }
 
+    /**
+     * Validate if current value type is equal to type
+     * @param {*} type 
+     */
     type(type) {
         if (this.isValid) {
             this.isValid = Validera.isTypeEqual(this.value, type);
@@ -188,6 +192,10 @@ class Validera {
         return this;
     }
 
+    /**
+     * Validate if current value is equal one of values items
+     * @param  {...any} values 
+     */
     equalOneof(...values) {
         if (this.isValid) {
             this.isValid = Validera.isEqualOneof(this.value, values);
@@ -195,6 +203,10 @@ class Validera {
         return this;
     }
 
+    /**
+     * Validate if current value is not equal one of values items
+     * @param  {...any} values 
+     */
     notEqualOneOf(...values) {
         if(this.isValid) {
             this.isValid = Validera.notEqualOneOf(this.value, values);
@@ -202,6 +214,10 @@ class Validera {
         return this;
     }
 
+    /**
+     * Validate if current value is not equal all of values items
+     * @param  {...any} values 
+     */
     notEqualAllof(...values) {
         if (this.isValid) {
             this.isValid = Validera.isNotEqualAllof(this.value, values);
@@ -209,6 +225,9 @@ class Validera {
         return this;
     }
 
+    /**
+     * Validate if current value is positive number
+     */
     positive() {
         if (this.isValid) {
             this.isValid = Validera.isPositive(this.value);
@@ -216,6 +235,9 @@ class Validera {
         return this;
     }
 
+    /**
+     * Validate if current value is negative number
+     */
     negative() {
         if (this.isValid) {
             this.isValid = Validera.isNegative(this.value);
@@ -223,6 +245,10 @@ class Validera {
         return this;
     }
 
+    /**
+     * Validate if current value is bigger than one of values items
+     * @param  {...any} values
+     */
     biggerThanOneof(...values) {
         if(this.isValid) {
             this.isValid = Validera.isBiggerThanOneof(this.value, values);
@@ -230,6 +256,10 @@ class Validera {
         return this;
     }
 
+    /**
+     * Validate if current value is bigger than all of values items
+     * @param  {...any} values
+     */
     biggerThanAllof(...values) {
         if (this.isValid) {
             this.isValid = Validera.isBiggerThan(this.value, values)
@@ -237,6 +267,10 @@ class Validera {
         return this;
     }
 
+    /**
+     * Validate if current value is bigger or equal one of values items
+     * @param  {...any} values 
+     */
     biggerOrEqualOneof(...values) {
         if (this.isValid) {
             this.isValid = Validera.isBiggerOrEqualOneof(this.value, values)
@@ -244,6 +278,10 @@ class Validera {
         return this;
     }
 
+    /**
+     * Validate if current value is smaller then one of values items
+     * @param  {...any} values
+     */
     smallerThanOneof(...values) {
         if(this.isValid) {
             this.isValid = Validera.isSmallerThanOneof(this.value, values);
@@ -251,6 +289,10 @@ class Validera {
         return this;
     }
 
+    /**
+     * Validate if current value is smaller than all of values items
+     * @param  {...any} values
+     */
     smallerThanAllof(...values) {
         if (this.isValid) {
             this.isValid = Validera.isSmallerThan(this.value, values)
@@ -258,6 +300,10 @@ class Validera {
         return this;
     }
 
+    /**
+     * Validate if current value is smaller or equal one of values items
+     * @param  {...any} values
+     */
     smallerOrEqualOneof(...values) {
         if (this.isValid) {
             this.isValid = Validera.isSmallerOrEqualOneof(this.value, values)
@@ -265,6 +311,9 @@ class Validera {
         return this;
     }
 
+    /**
+     * Validate if current value is not equal null
+     */
     notNull() {
         if (this.isValid) {
             this.isValid = Validera.isNotNull(this.value);
@@ -272,6 +321,9 @@ class Validera {
         return this;
     }
 
+    /**
+     * Validate if current value is null or zero
+     */
     nullOrZero() {
         if (this.isValid) {
             this.value = Validera.isNullOrZero(this.value);
@@ -279,6 +331,9 @@ class Validera {
         return this;
     }
 
+    /**
+     * Validate if current value is null or empty
+     */
     nullOrEmpty() {
         if (this.isValid) {
             this.isValid = Validera.isNullorEmpty(this.value);
@@ -286,10 +341,16 @@ class Validera {
         return this;
     }
 
+    /**
+     * Return if validation is true of false
+     */
     check() {
         return this.isValid;
     }
 
+    /**
+     * Return true if is valid or throw an error
+     */
     valueOrThrow() {
         if (this.isValid) {
             return this.value;
