@@ -30,8 +30,19 @@ class Validera {
      * @param  {...any} values 
      */
     static isNotEqualOneof(value, ...values) {
+        let isValueArray = Array.isArray(value);
         for(let val of values) {
-            if(value != val) return true;
+            let isValArray = Array.isArray(val);
+
+            if(isValueArray == isValArray) {
+                if(value != val) return true;
+            }
+            else if(!isValueArray && isValArray) {
+                for(let v of val) {
+                    let isValid = Validera.isBiggerThanOneof(value, v);
+                    if(isValid) return true;
+                }
+            }
         }
         return false;
     }
