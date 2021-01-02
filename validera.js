@@ -148,7 +148,7 @@ class Validera {
         if(this.isValid){
             return this.value;
         }
-        throw Error("Information Not Valid")
+        throw Error("Value is not valid")
     }
 }
 
