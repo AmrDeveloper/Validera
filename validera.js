@@ -75,8 +75,19 @@ class Validera {
      * @param  {...any} values 
      */
     static isBiggerThanOneof(value, ...values) {
+        let isValueArray = Array.isArray(value);
         for(let val of values) {
-            if(value > val) return true;
+            let isValArray = Array.isArray(val);
+
+            if(isValueArray == isValArray) {
+                if(value > val) return true;
+            }
+            else if(!isValueArray && isValArray) {
+                for(let v of val) {
+                    let isValid = Validera.isBiggerThanOneof(value, v);
+                    if(isValid) return true;
+                }
+            }
         }
         return false;
     }
@@ -87,7 +98,21 @@ class Validera {
      * @param  {...any} values 
      */
     static isBiggerThanAllof(value, ...values) {
-        return value > Math.max(values)
+        let isValueArray = Array.isArray(value);
+        for(let val of values) {
+            let isValArray = Array.isArray(val);
+
+            if(isValueArray == isValArray) {
+                if(value < val || value == val) return false;
+            }
+            else if(!isValueArray && isValArray) {
+                for(let v of val) {
+                    let isValid = Validera.isBiggerThanAllof(value, v);
+                    if(!isValid) return false;
+                }
+            }
+        }
+        return true;
     }
 
     /**
@@ -96,8 +121,19 @@ class Validera {
      * @param  {...any} values 
      */
     static isBiggerOrEqualOneof(value, ...values) {
+        let isValueArray = Array.isArray(value);
         for(let val of values) {
-            if(value >= val) return true;
+            let isValArray = Array.isArray(val);
+
+            if(isValueArray == isValArray) {
+                if(value >= val) return true;
+            }
+            else if(!isValueArray && isValArray) {
+                for(let v of val) {
+                    let isValid = Validera.isBiggerOrEqualOneof(value, v);
+                    if(isValid) return true;
+                }
+            }
         }
         return false;
     }
@@ -108,8 +144,19 @@ class Validera {
      * @param  {...any} values 
      */
     static isSmallerThanOneof(value, ...values) {
+        let isValueArray = Array.isArray(value);
         for(let val of values) {
-            if(value < val) return true;
+            let isValArray = Array.isArray(val);
+
+            if(isValueArray == isValArray) {
+                if(value < val) return true;
+            }
+            else if(!isValueArray && isValArray) {
+                for(let v of val) {
+                    let isValid = Validera.isBiggerThanOneof(value, v);
+                    if(isValid) return true;
+                }
+            }
         }
         return false;
     }
@@ -120,7 +167,21 @@ class Validera {
      * @param  {...any} values 
      */
     static isSmallerThanAllof(value, ...values) {
-        return value < Math.min(values)
+        let isValueArray = Array.isArray(value);
+        for(let val of values) {
+            let isValArray = Array.isArray(val);
+
+            if(isValueArray == isValArray) {
+                if(value > val || value == val) return false;
+            }
+            else if(!isValueArray && isValArray) {
+                for(let v of val) {
+                    let isValid = Validera.isBiggerThanAllof(value, v);
+                    if(!isValid) return false;
+                }
+            }
+        }
+        return true;
     }
 
     /**
@@ -129,8 +190,19 @@ class Validera {
      * @param  {...any} values 
      */
     static isSmallerOrEqualOneof(value, ...values) {
+        let isValueArray = Array.isArray(value);
         for(let val of values) {
-            if(value <= val) return true;
+            let isValArray = Array.isArray(val);
+
+            if(isValueArray == isValArray) {
+                if(value <= val) return true;
+            }
+            else if(!isValueArray && isValArray) {
+                for(let v of val) {
+                    let isValid = Validera.isBiggerOrEqualOneof(value, v);
+                    if(isValid) return true;
+                }
+            }
         }
         return false;
     }
@@ -262,7 +334,7 @@ class Validera {
      */
     biggerThanAllof(...values) {
         if (this.isValid) {
-            this.isValid = Validera.isBiggerThan(this.value, values)
+            this.isValid = Validera.isBiggerThanAllof(this.value, values)
         }
         return this;
     }
@@ -295,7 +367,7 @@ class Validera {
      */
     smallerThanAllof(...values) {
         if (this.isValid) {
-            this.isValid = Validera.isSmallerThan(this.value, values)
+            this.isValid = Validera.isSmallerThanAllof(this.value, values)
         }
         return this;
     }
