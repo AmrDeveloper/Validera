@@ -15,8 +15,8 @@ class Validera {
     }
 
     static isNotEqualOneof(value, ...values) {
-        for(let v of values) {
-            if(value != v) return true;
+        for(let val of values) {
+            if(value != val) return true;
         }
         return false;
     }
@@ -37,12 +37,40 @@ class Validera {
         return value < 0;
     }
 
-    static isBiggerThan(value, values) {
-        return value > Math.max(...values)
+    static isBiggerThanOneof(value, ...values) {
+        for(let val of values) {
+            if(value > val) return true;
+        }
+        return false;
     }
 
-    static isSmallerThan(value, values) {
-        return value < Math.min(...values)
+    static isBiggerThanAllof(value, ...values) {
+        return value > Math.max(values)
+    }
+
+    static isBiggerOrEqualOneof(value, ...values) {
+        for(let val of values) {
+            if(value >= val) return true;
+        }
+        return false;
+    }
+
+    static isSmallerThanOneof(value, ...values) {
+        for(let val of values) {
+            if(value < val) return true;
+        }
+        return false;
+    }
+
+    static isSmallerThanAllof(value, ...values) {
+        return value < Math.min(values)
+    }
+
+    static isSmallerOrEqualOneof(value, ...values) {
+        for(let val of values) {
+            if(value <= val) return true;
+        }
+        return false;
     }
 
     static isNullorEmpty(value) {
@@ -115,16 +143,44 @@ class Validera {
         return this;
     }
 
-    biggerThan(...values) {
+    biggerThanOneof(...values) {
+        if(this.isValid) {
+            this.isValid = Validera.isBiggerThanOneof(this.value, values);
+        }
+        return this;
+    }
+
+    biggerThanAllof(...values) {
         if (this.isValid) {
             this.isValid = Validera.isBiggerThan(this.value, values)
         }
         return this;
     }
 
-    smallerThan(...values) {
+    biggerOrEqualOneof(...values) {
+        if (this.isValid) {
+            this.isValid = Validera.isBiggerOrEqualOneof(this.value, values)
+        }
+        return this;
+    }
+
+    smallerThanOneof(...values) {
+        if(this.isValid) {
+            this.isValid = Validera.isSmallerThanOneof(this.value, values);
+        }
+        return this;
+    }
+
+    smallerThanAllof(...values) {
         if (this.isValid) {
             this.isValid = Validera.isSmallerThan(this.value, values)
+        }
+        return this;
+    }
+
+    smallerOrEqualOneof(...values) {
+        if (this.isValid) {
+            this.isValid = Validera.isSmallerOrEqualOneof(this.value, values)
         }
         return this;
     }
