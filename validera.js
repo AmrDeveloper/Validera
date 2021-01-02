@@ -429,6 +429,17 @@ class Validera {
         }
         throw Error("Value is not valid")
     }
+
+    /**
+     * Return value if its valid or throw error with user message
+     * @param {*} message 
+     */
+    valueOrThrowMessage(message) {
+        if (this.isValid) {
+            return this.value;
+        }
+        throw Error(message)
+    }
 }
 
 module.exports = Validera;
