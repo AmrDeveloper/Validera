@@ -2,6 +2,9 @@
 
 NodeJS object validation to check type and value with multi conditions
 
+![Version](https://img.shields.io/npm/v/validera.svg)
+![Downloads](https://img.shields.io/npm/dm/validera.svg)
+
 ## Install
 
 ```npm
